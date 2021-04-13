@@ -1,0 +1,10 @@
+# /home/piaras/.config/tmuxinator/go-practice.yml
+
+name: go-practice
+root: ~/Scratch/go-practice
+windows:
+  - editor:
+      layout: main-vertical
+      panes:
+        - vim
+        - shell

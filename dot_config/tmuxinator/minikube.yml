@@ -1,0 +1,9 @@
+# /home/piaras/.config/tmuxinator/minikube.yml
+name: minikube
+root: ~/
+on_project_start: kubectl config use-context minikube
+windows:
+  - editor:
+      layout: main-horizontal
+      panes:
+        -

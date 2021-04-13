@@ -1,0 +1,20 @@
+[user]
+	email = phoban01@gmail.com
+	name = Piaras Hoban
+	signingkey = 8A45BDF1D30AB14F
+[core]
+	excludesfile = $HOME/.gitignore_global
+[push]
+	default = current
+[commit]
+	gpgSign = true
+[init]
+	templatedir = ~/.git_template
+[diff "sopsdiffer"]
+	textconv = sops -d
+[url "ssh://git@github.com/"]
+    insteadOf = https://github.com/
+[pull]
+	rebase = true
+[credential "https://github.com"]
+	helper = !gh auth git-credential

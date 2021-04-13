@@ -1,0 +1,4 @@
+bluetoothctl power on
+xrdb -load ~/.Xresources &
+yabar &
+exec bspwm

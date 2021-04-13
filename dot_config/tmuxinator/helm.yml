@@ -1,0 +1,8 @@
+name: helm
+root: ~/github.com.storyful/helm-charts
+windows:
+  - editor:
+      layout: even-horizontal
+      panes:
+        - vim charts/project
+        -

@@ -1,0 +1,63 @@
+# Path to your oh-my-zsh installation.
+export LC_ALL="en_US.UTF-8"
+
+PROMPT='%(?.%F{green}.%F{red})>%f '
+
+alias gl="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias gs="git status"
+alias ga="git commit -S -am"
+alias gk="git checkout"
+
+alias kb="kubectl"
+alias kn="kubectl config set-context --current --namespace "
+alias kc="kubectl config use-context "
+alias dc="docker-compose"
+alias vim='nvim'
+alias ls='exa --group-directories-first'
+alias xcp="xclip -selection c"
+alias mux=tmuxinator
+alias ws=mux start
+alias ssh='TERM=vt100 ssh '
+
+export GOPATH=$HOME/go
+export GOBIN=$HOME/go/bin
+export CGO_ENABLED=1
+export IS_NO_COLOR="true" #otherwise breaks vim quickfix
+export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+export GO111MODULE=auto
+export KUBE_EDITOR=vim
+export KUBECONFIG=$HOME/.kube/config.yaml
+export TERM=xterm-256color
+export DISABLE_AUTO_TITLE=true
+export DOCKER_BUILDKIT=1
+export FZF_DEFAULT_OPTS="--height 50%"
+
+function d8s() {
+    kubectl get secret $1 -o json | jq ".data|map_values(@base64d)"
+}
+
+function launch_ranger() {
+    ranger --choosedir=$HOME/.rangerdir < $TTY
+    LASTDIR=`cat $HOME/.rangerdir`
+    cd "$LASTDIR"
+    zle reset-prompt
+}
+
+autoload -U edit-command-line
+
+zle -N launch_ranger
+zle -N edit-command-line
+
+export PATH=$PATH:$HOME/.local/bin
+
+bindkey -v
+bindkey '^o' launch_ranger
+bindkey '^E' edit-command-line
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export FLYCTL_INSTALL="/home/piaras/.fly"
+export PATH="$FLYCTL_INSTALL/bin:$PATH"
+
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions-git/zsh-autosuggestions.zsh
