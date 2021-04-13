@@ -1,5 +1,12 @@
-# Path to your oh-my-zsh installation.
 export LC_ALL="en_US.UTF-8"
+
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=1000
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_SPACE
+setopt HIST_REDUCE_BLANKS
 
 PROMPT='%(?.%F{green}.%F{red})>%f '
 
@@ -19,6 +26,7 @@ alias xcp="xclip -selection c"
 alias mux=tmuxinator
 alias ws=mux start
 alias ssh='TERM=vt100 ssh '
+alias blue="bluetoothctl "
 
 export GOPATH=$HOME/go
 export GOBIN=$HOME/go/bin
