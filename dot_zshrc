@@ -8,6 +8,7 @@ alias gs="git status"
 alias ga="git commit -S -am"
 alias gk="git checkout"
 
+alias l="ls -al"
 alias kb="kubectl"
 alias kn="kubectl config set-context --current --namespace "
 alias kc="kubectl config use-context "
