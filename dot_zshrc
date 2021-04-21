@@ -1,4 +1,5 @@
 export LC_ALL="en_US.UTF-8"
+export EDITOR="vim"
 
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
@@ -10,6 +11,7 @@ setopt HIST_REDUCE_BLANKS
 
 PROMPT='%(?.%F{green}.%F{red})>%f '
 
+alias g="git"
 alias gl="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gs="git status"
 alias ga="git commit -S -am"
@@ -27,6 +29,7 @@ alias mux=tmuxinator
 alias ws=mux start
 alias ssh='TERM=vt100 ssh '
 alias blue="bluetoothctl "
+alias laws='aws --profile test --endpoint-url=http://localhost:4566 '
 
 export GOPATH=$HOME/go
 export GOBIN=$HOME/go/bin
@@ -70,3 +73,4 @@ export PATH="$FLYCTL_INSTALL/bin:$PATH"
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions-git/zsh-autosuggestions.zsh
+

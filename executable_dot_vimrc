@@ -217,9 +217,9 @@ nmap <leader>gn <Plug>(GitGutterNextHunk)  " git next
 nmap <leader>gp <Plug>(GitGutterPrevHunk)  " git previous
 nmap <leader>ga <Plug>(GitGutterStageHunk) " git add (chunk)
 nmap <leader>gu <Plug>(GitGutterUndoHunk)  " git undo
-nmap <leader>gs :Gstatus<CR>
-nmap <leader>gc :Gcommit<CR>
-nmap <leader>gb :Gblame<CR>
+nmap <leader>gs :Git status<CR>
+nmap <leader>gc :Git commit<CR>
+nmap <leader>gb :Git blame<CR>
 
 command! Greview :Git! diff --staged
 nnoremap <leader>gr :Greview<cr>
