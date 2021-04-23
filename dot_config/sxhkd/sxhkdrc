@@ -8,23 +8,23 @@ super + Return
 
 # program launcher
 super + {d,o}
-	rofi -show {run, window}
+	$HOME/.config/rofi/bin/launcher_text -show {run, window}
 
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
 
 super + shift + o
-	google-chrome-stable --force-device-scale-factor=1.75
+	google-chrome-stable --force-device-scale-factor=1.25
 
 super + shift + p
-	google-chrome-stable --force-device-scale-factor=1.75 --incognito
+	google-chrome-stable --force-device-scale-factor=1.25 --incognito
 
 super + shift + m
 	spotify --force-device-scale-factor=2 --incognito
 
 super + shift + k
-	keybase-gui --force-device-scale-factor=1.75
+	keybase-gui --force-device-scale-factor=1.25
 #
 # bspwm hotkeys
 #
@@ -133,3 +133,27 @@ super + alt + shift + {h,j,k,l}
 # move a floating window
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+XF86AudioMute
+	pulsemixer --toggle-mute
+
+XF86AudioRaiseVolume
+	pulsemixer --change-volume +5
+
+XF86AudioLowerVolume
+	pulsemixer --change-volume -5
+
+XF86AudioMicMute
+	pulsemixer --id source-1 --toggle-mute
+
+XF86MonBrightnessUp
+	brightnessctl set +20
+
+XF86MonBrightnessDown
+	brightnessctl set 20-
+
+shift + XF86MonBrightnessUp
+	brightnessctl -d tpacpi::kbd_backlight set +1
+
+shift + XF86MonBrightnessDown
+	brightnessctl -d tpacpi::kbd_backlight set 1-
