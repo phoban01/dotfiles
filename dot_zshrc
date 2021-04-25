@@ -74,3 +74,4 @@ export PATH="$FLYCTL_INSTALL/bin:$PATH"
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions-git/zsh-autosuggestions.zsh
 
+export npm_config_prefix="$HOME/.local"
