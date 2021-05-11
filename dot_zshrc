@@ -3,13 +3,12 @@ export EDITOR="vim"
 
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
-SAVEHIST=1000
-setopt INC_APPEND_HISTORY
+SAVEHIST=10000
 setopt SHARE_HISTORY
 setopt HIST_IGNORE_SPACE
 setopt HIST_REDUCE_BLANKS
 
-PROMPT='%(?.%F{green}.%F{red})>%f '
+PROMPT='%m %(?.%F{green}.%F{red})>%f '
 
 alias g="git"
 alias gl="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
