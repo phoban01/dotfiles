@@ -84,11 +84,12 @@ EOF
 
 echo "LANG=en_US.UTF-8" > /mnt/etc/locale.conf
 
+arch-chroot /mnt curl -s https://pkgs.ph0bn.xyz > packages.txt
+arch-chroot /mnt pacman -S --noconfirm --needed packages.txt
+
 arch-chroot /mnt useradd -mU -s /usr/bin/zsh -G wheel,uucp,video,audio,storage,games,input "$user"
 arch-chroot /mnt chsh -s /usr/bin/zsh
 
 echo "$user:$password" | chpasswd --root /mnt
 echo "root:$password" | chpasswd --root /mnt
 
-arch-chroot /mnt curl -s https://pkgs.ph0bn.xyz > packages.txt
-arch-chroot /mnt pacman -S --noconfirm --needed packages.txt
