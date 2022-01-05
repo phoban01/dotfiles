@@ -8,7 +8,7 @@ super + Return
 
 # program launcher
 super + {d,o}
-	$HOME/.config/rofi/bin/launcher_text -show {run, window}
+	$HOME/.config/rofi/bin/launcher_text -show {drun, window}
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -21,10 +21,24 @@ super + shift + p
 	google-chrome-stable --force-device-scale-factor=1.25 --incognito
 
 super + shift + m
-	spotify --force-device-scale-factor=2 --incognito
+	spotify --force-device-scale-factor=1 --incognito
 
 super + shift + k
 	keybase-gui --force-device-scale-factor=1.25
+
+
+super + s
+	bspc node -t floating
+
+super + m
+	bspc node $(bspc query -N -n. hidden.local.window) --flag hidden=on
+
+super + shift + m
+	bspc node $(bspc query -N -n. hidden.local.window) --flag hidden=off
+
+super + alt + m
+	bspc node $(bspc query -N -n. hidden.local.window) --flag hidden=off
+
 #
 # bspwm hotkeys
 #
@@ -38,8 +52,8 @@ super + {_,shift + }w
 	bspc node -{c,k}
 
 # alternate between the tiled and monocle layout
-super + m
-	bspc desktop -l next
+# super + m
+#     bspc desktop -l next
 super + f
 	bspc desktop -l next
 

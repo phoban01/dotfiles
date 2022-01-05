@@ -5,7 +5,7 @@
       "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
       "filetypes": ["go"],
   "gopls": {
-      "buildFlags": ["-tags=build"]
+      "buildFlags": ["-tags=build, integration"]
   }
     }
   }
