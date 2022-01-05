@@ -6,6 +6,8 @@
 
 set -uo pipefail
 
+pacman -Syu --noconfirm dialog
+
 trap 's=$?; echo "$0: Error on line "$LINENO": $BASH_COMMAND"; exit $s' ERR
 
 ### Get infomation from user ###
