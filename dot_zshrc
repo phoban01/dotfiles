@@ -1,35 +1,40 @@
+autoload -Uz compinit
+compinit
 export LC_ALL="en_US.UTF-8"
 export EDITOR="vim"
 
 HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=100000
+SAVEHIST=100000
+
 setopt SHARE_HISTORY
 setopt HIST_IGNORE_SPACE
 setopt HIST_REDUCE_BLANKS
+unsetopt nomatch
 
-PROMPT='%m %(?.%F{green}.%F{red})>%f '
+PROMPT='%(?.%F{green}.%F{red})>%f '
 
+###### ALIASES
 alias g="git"
 alias gl="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gs="git status"
 alias ga="git commit -S -am"
 alias gk="git checkout"
-
 alias l="ls -al"
-alias kb="kubectl"
+alias ls='exa --group-directories-first'
+alias k="kubectl"
 alias kn="kubectl config set-context --current --namespace "
-alias kc="kubectl config use-context "
 alias dc="docker-compose"
 alias vim='nvim'
-alias ls='exa --group-directories-first'
 alias xcp="xclip -selection c"
 alias mux=tmuxinator
 alias ws=mux start
-alias ssh='TERM=vt100 ssh '
-alias blue="bluetoothctl "
-alias laws='aws --profile test --endpoint-url=http://localhost:4566 '
+alias ssh='TERM=vt100 ssh'
+alias blue="bluetoothctl"
+alias awslocal='aws --profile test --endpoint-url=http://localhost:4566'
+alias tf="terraform"
 
+###### ENV
 export GOPATH=$HOME/go
 export GOBIN=$HOME/go/bin
 export CGO_ENABLED=1
@@ -42,35 +47,47 @@ export TERM=xterm-256color
 export DISABLE_AUTO_TITLE=true
 export DOCKER_BUILDKIT=1
 export FZF_DEFAULT_OPTS="--height 50%"
+export PATH=$PATH:$HOME/.local/bin
+export npm_config_prefix="$HOME/.local"
+export DIRENV_LOG_FORMAT=""
 
-function d8s() {
+###### SHELL BINDINGS
+autoload -U edit-command-line
+
+zle -N launch_ranger
+zle -N edit-command-line
+
+bindkey -v
+bindkey '^o' launch_ranger
+bindkey '^E' edit-command-line
+
+###### FUNCTIONS
+d8s() {
     kubectl get secret $1 -o json | jq ".data|map_values(@base64d)"
 }
 
-function launch_ranger() {
+launch_ranger() {
     ranger --choosedir=$HOME/.rangerdir < $TTY
     LASTDIR=`cat $HOME/.rangerdir`
     cd "$LASTDIR"
     zle reset-prompt
 }
 
-autoload -U edit-command-line
+fzf-git-branch() {
+    git rev-parse HEAD > /dev/null 2>&1 || return
+    git branch --color=always --all --sort=-committerdate |
+        grep -v HEAD |
+        fzf --height 50% --ansi --no-multi --preview-window right:65% \
+            --preview 'git log -n 50 --color=always --date=short --pretty="format:%C(auto)%cd %h%d %s" $(sed "s/.* //" <<< {})' |
+        sed "s/.* //"
+}
 
-zle -N launch_ranger
-zle -N edit-command-line
-
-export PATH=$PATH:$HOME/.local/bin
-
-bindkey -v
-bindkey '^o' launch_ranger
-bindkey '^E' edit-command-line
-
+###### MISC
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export FLYCTL_INSTALL="/home/piaras/.fly"
-export PATH="$FLYCTL_INSTALL/bin:$PATH"
-
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/zsh-autosuggestions-git/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source <(kubectl completion zsh)
 
-export npm_config_prefix="$HOME/.local"
+eval "$(direnv hook zsh)"
+eval "$(zoxide init zsh)"
