@@ -4,6 +4,9 @@
 	signingkey = 8A45BDF1D30AB14F
 [core]
 	excludesfile = $HOME/.gitignore_global
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only
 [push]
 	default = current
 [commit]
@@ -18,3 +21,11 @@
 	rebase = true
 [credential "https://github.com"]
 	helper = !gh auth git-credential
+[format]
+	signOff = true
+[pager]
+	blame = delta
+[delta]
+    line-numbers = true
+    side-by-side = true
+	hyperlinks = true

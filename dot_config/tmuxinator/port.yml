@@ -1,7 +1,7 @@
 # /home/piaras/.config/tmuxinator/itma.yml
 
 name: port
-root: ~/projects/port-version-2/api
+root: ~/projects/port-version-2/
 
 windows:
   - go:
@@ -11,7 +11,7 @@ windows:
         - docker-compose up -d
   - web:
       layout: main-vertical
-      root: ~/projects/port-version-2/api/web/admin-ui
+      root: ~/projects/port-version-2/web/admin-ui
       panes:
         - vim
         - yarn start

@@ -90,6 +90,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'Yggdroot/indentLine'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'mattn/emmet-vim'
+  Plug 'yorinasub17/vim-terragrunt', {'branch': 'main'}
+  Plug 'adelowo/godo', { 'do': ':GodoInstallBinary' }
+  Plug 'github/copilot.vim', { 'branch': 'main' }
 call plug#end()
 
 " theme
@@ -148,7 +151,6 @@ let g:webdevicons_conceal_nerdtree_brackets = 1
 let g:DevIconsEnableFoldersOpenClose = 1
 
 " vim-go Config
-let g:go_fmt_command = "goimports"
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
@@ -157,10 +159,11 @@ let g:go_highlight_operators = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_format_strings = 1
 let g:go_auto_type_info = 1
-let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+let g:go_metalinter_enabled = ['golangci-lint']
 let g:go_metalinter_autosave = 0
 let g:go_def_mapping_enabled = 1
 let g:go_gopls_settings = { 'buildFlags': '-tags=ignore' }
+let g:go_addtags_transform = 'camelcase'
 
 map <silent> <leader>gfs :GoFillStruct<CR>
 map <silent> <leader>gie :GoIfErr<CR>
@@ -281,20 +284,7 @@ let g:ale_fixers = {
 \    'autopep8',
 \    'black',
 \    'yapf',
-\  ],
-\  'javascript': [
-\    'eslint',
-\    'prettier'
-\  ],
-\  'typescript': [
-\    'eslint',
-\    'prettier'
-\  ],
-\  'typescriptreact': [
-\    'eslint',
-\    'prettier'
 \  ]
-\
 \}
 
 " goyo
@@ -311,3 +301,6 @@ let g:user_emmet_settings = {
 \     'extends' : 'jsx',
 \ }
 \}
+
+" skeleton loaders
+autocmd BufNewFile *.sh 0r ~/.vim/templates/skeleton.sh
