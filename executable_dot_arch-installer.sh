@@ -46,8 +46,8 @@ parted --script "${device}" -- mklabel gpt \
   mkpart primary linux-swap 129MiB ${swap_end} \
   mkpart primary ext4 ${swap_end} 100%
 
-# Simple globbing was not enough as on one device I needed to match /dev/mmcblk0p1
-# but not /dev/mmcblk0boot1 while being able to match /dev/sda1 on other devices.
+sleep 10
+
 part_boot="$(ls ${device}* | grep -E "^${device}p?1$")"
 part_swap="$(ls ${device}* | grep -E "^${device}p?2$")"
 part_root="$(ls ${device}* | grep -E "^${device}p?3$")"
