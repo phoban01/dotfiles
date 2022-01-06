@@ -65,7 +65,6 @@ httpie
 hugo
 inetutils
 iniparser
-iptables-nft
 iw
 jq
 k9s
