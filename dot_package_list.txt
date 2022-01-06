@@ -3,7 +3,6 @@ alsa-utils
 amd-ucode
 ansible
 arandr
-audacity
 autoconf
 automake
 autorandr
@@ -30,7 +29,6 @@ code
 consul
 cowsay
 dbeaver
-deno
 dialog
 direnv
 dmidecode
@@ -45,8 +43,6 @@ exa
 fakeroot
 firefox
 flex
-fluxctl
-fortune-mod
 fzf
 gcc
 gimp
@@ -86,7 +82,6 @@ lvm2
 m4
 make
 man-db
-minikube
 mkcert
 mtr
 net-tools
@@ -94,7 +89,6 @@ networkmanager
 nmap
 node-gyp
 nodejs
-nomad
 npm
 nvidia
 nvidia-settings
@@ -104,7 +98,6 @@ openresolv
 openssh
 packer
 patch
-pdftk
 perf
 pkgconf
 podman
@@ -191,12 +184,5 @@ xorg-xwininfo
 xorg-xwud
 youtube-dl
 yq
-yubico-pam
-yubikey-full-disk-encryption
-yubikey-manager
-yubikey-personalization
-yubioath-desktop
 zip
-zoxide
 zsh
-zsh-syntax-highlighting
